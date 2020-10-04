@@ -1,0 +1,5 @@
+/home/hacker/Study/Programming_3sem/LR1/lab01-parser/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/hacker/Study/Programming_3sem/LR1/lab01-parser/cmake-build-debug/CMakeFiles/parser.dir
+/home/hacker/Study/Programming_3sem/LR1/lab01-parser/cmake-build-debug/CMakeFiles/test.dir
+/home/hacker/Study/Programming_3sem/LR1/lab01-parser/cmake-build-debug/CMakeFiles/tests.dir
+/home/hacker/Study/Programming_3sem/LR1/lab01-parser/cmake-build-debug/CMakeFiles/edit_cache.dir
