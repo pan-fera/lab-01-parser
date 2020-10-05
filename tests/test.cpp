@@ -184,7 +184,7 @@ TEST(Student, name) {
 TEST(Student, group) {
     Student student;
     std::stringstream str;
-    student.set_group(std::string ("1"));
+    student.set_group(std::string("1"));
     student.print_group(str);
     EXPECT_EQ(str.str(), "1");
 
@@ -203,7 +203,7 @@ TEST(Student, avg) {
     Student student;
     std::stringstream str;
 
-    student.set_avg(std::string ("3"));
+    student.set_avg(std::string("3"));
     student.print_avg(str);
     EXPECT_EQ(str.str(), "3");
 
@@ -226,7 +226,7 @@ TEST(Student, avg) {
 TEST(Student, debt) {
     Student student;
     std::stringstream str;
-    student.set_debt(std::string ("Assembler"));
+    student.set_debt(std::string("Assembler"));
     student.print_debt(str);
     EXPECT_EQ(str.str(), "Assembler");
 
@@ -255,7 +255,7 @@ TEST(Student, length_name) {
 
 TEST(Student, length_group) {
     Student student;
-    student.set_group(std::string ("1"));
+    student.set_group(std::string("1"));
     EXPECT_EQ(student.length_group(), (size_t) 1);
 
     student.set_group(31);
@@ -267,7 +267,7 @@ TEST(Student, length_group) {
 
 TEST(Student, length_avg) {
     Student student;
-    student.set_avg(std::string ("3.3"));
+    student.set_avg(std::string("3.3"));
     EXPECT_EQ(student.length_avg(), (size_t) 3);
 
     student.set_avg(4);
@@ -283,7 +283,7 @@ TEST(Student, length_avg) {
 
 TEST(Student, length_debt) {
     Student student;
-    student.set_debt(std::string ("Assembler"));
+    student.set_debt(std::string("Assembler"));
     EXPECT_EQ(student.length_debt(), (size_t) 9);
 
     student.set_debt(nullptr);
@@ -337,9 +337,9 @@ TEST(Student, FromJson) {
     Student::from_json(j, student);
     EXPECT_EQ(student.get_name(), std::string("Petrov Nikita"));
     EXPECT_EQ(std::any_cast<std::string>(student.get_group()), "IU8-31");
-    EXPECT_EQ(std::any_cast<double>(student.get_avg()), (double)3.33);
-    EXPECT_EQ(std::any_cast<std::vector<std::string>> \
-            (student.get_debt()), std::vector<std::string>({"C++", "Linux", "Network"}));
+    EXPECT_EQ(std::any_cast<double>(student.get_avg()), static_cast<double>(3.33));
+    EXPECT_EQ(std::any_cast<std::vector<std::string>> (student.get_debt()), \
+            std::vector<std::string> ({"C++", "Linux", "Network"}));
 }
 
 TEST(Table, Error_item){

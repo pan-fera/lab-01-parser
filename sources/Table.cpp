@@ -52,22 +52,23 @@ Table Table::parseFile(const std::string& s) {
     json j;
     file >> j;
 
-    if(j.find("items") == j.end())
+    if (j.find("items") == j.end())
     {
         throw std::runtime_error("Items should be in file " + s);
     }
-    if(j.find("_meta") == j.end())
+    if (j.find("_meta") == j.end())
     {
         throw std::runtime_error("_meta should be in file " + s);
     }
-    if(!j.at("items").is_array())
+    if (!j.at("items").is_array())
     {
         throw std::runtime_error("Items should be array in " + s);
     }
-    if(j.at("items").size() != std::any_cast<std::size_t> \
+    if (j.at("items").size() != std::any_cast<std::size_t> \
             (j.at("_meta").at("count").get<std::size_t>()))
     {
-        throw std::runtime_error("Count elements in array items != _meta in file " + s);
+        throw std::runtime_error \
+        ("Count elements in array items != _meta in file " + s);
     }
     Table table(j);
     return table;
@@ -97,8 +98,7 @@ void Table::print(std::ostream& out) const
     }
     out << stick << std::endl;
 
-
-    for(size_t m =0; m<m_students.size(); m++)
+    for (size_t m = 0; m < m_students.size(); m++)
     {
         out << "| ";
         m_students[m].print_name(out);
@@ -130,5 +130,4 @@ void Table::print(std::ostream& out) const
 }
 
 Table::~Table(){
-
 }

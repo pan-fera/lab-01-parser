@@ -82,8 +82,8 @@ size_t Student::length_avg() const
         do {
             count++;
             k/=10;
-        } while(k != 0);
-        while((static_cast<int>(b))-b != 0){
+        } while (k != 0);
+        while ((static_cast<int>(b))-b != 0){
             count++;
             b*=10;
         }
