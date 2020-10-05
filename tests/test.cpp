@@ -1,19 +1,20 @@
+//
+// Created by hacker on 26.09.2020.
+//
 #include <gtest/gtest.h>
 #include <iostream>
 #include "Table.hpp"
 #include <fstream>
 #include <cstring>
 #include "json_any.hpp"
-#include <sstream>
 #include <vector>
-TEST(Example, EmptyTest) {
 
+TEST(Example, EmptyTest) {
     EXPECT_TRUE(true);
 }
 
 TEST(Table, FromJson){
-
-  std::string test_json=\
+    std::string test_json = \
 R"({
   "items": [
     {
@@ -45,19 +46,18 @@ R"({
   }
 })";
 
-std::ofstream file_json;//файловый вывод
+    std::ofstream file_json;//файловый вывод
 
-file_json.open("file_json.json");
-file_json<<test_json;
-file_json.close();
-Table table = Table::parseFile("file_json.json");
+    file_json.open("file_json.json");
+    file_json << test_json;
+    file_json.close();
+    Table table = Table::parseFile("file_json.json");
 
 
-  std::stringstream str;
-  //str << table;
-  table.print(str);
-  std::cout<<str.str();
-  std::string ref_string =\
+    std::stringstream str;
+    table.print(str);
+    std::cout << str.str();
+    std::string ref_string =\
 R"(| name          | group  | avg   | debt    |
 |---------------|--------|-------|---------|
 | Ivanov Petr   | 1      | 4.25  | null    |
@@ -68,27 +68,23 @@ R"(| name          | group  | avg   | debt    |
 |---------------|--------|-------|---------|
 )";
 
-  EXPECT_EQ(str.str(), ref_string);
-
+    EXPECT_EQ(str.str(), ref_string);
 }
 
-
 TEST(Table, Error_name_file) {
+    std::string ref_string = "unable to open json: file_jso.json";
 
-  std::string ref_string = "unable to open json: file_jso.json";
-
-  try{
-    Table table = Table::parseFile("file_jso.json");
-  }
-  catch(std::runtime_error& s)
-  {
-    EXPECT_EQ(s.what(), ref_string);
-  }
+    try{
+        Table table = Table::parseFile("file_jso.json");
+    }
+    catch(std::runtime_error& s)
+    {
+        EXPECT_EQ(s.what(), ref_string);
+    }
 }
 
 TEST(Table, items) {
-
-  std::string responseString=\
+    std::string responseString = \
 R"({
   "items": {
       "name": "Sidorov Ivan",
@@ -101,26 +97,25 @@ R"({
   }
 })";
 
-  std::ofstream file_json;//файловый вывод
+    std::ofstream file_json;//файловый вывод
 
-  file_json.open("file_json.json");
-  file_json<<responseString;
-  file_json.close();
-  std::string ref_string = "Items should be array in file_json.json";
+    file_json.open("file_json.json");
+    file_json << responseString;
+    file_json.close();
+    std::string ref_string = "Items should be array in file_json.json";
 
-  try{
-    Table table = Table::parseFile("file_json.json");
-  }
-  catch(std::runtime_error& s)
-  {
-    EXPECT_EQ(s.what(), ref_string);
-  }
+    try{
+        Table table = Table::parseFile("file_json.json");
+    }
+    catch(std::runtime_error& s)
+    {
+        EXPECT_EQ(s.what(), ref_string);
+    }
 
 }
 
 TEST(Table, _meta) {
-
-  std::string responseString=\
+    std::string responseString = \
 R"({
   "items": [
     {
@@ -134,221 +129,215 @@ R"({
     "count": 2
   }
 })";
-  std::ofstream file_json;//файловый вывод
+    std::ofstream file_json;//файловый вывод
 
-  file_json.open("file_json.json");
-  file_json<<responseString;
-  file_json.close();
-  std::string ref_string = "Count elements in array items != _meta in file file_json.json";
+    file_json.open("file_json.json");
+    file_json << responseString;
+    file_json.close();
+    std::string ref_string = \
+            "Count elements in array items != _meta in file file_json.json";
 
- try{
-    Table table = Table::parseFile("file_json.json");
-  }
-  catch(std::runtime_error& s)
-  {
-    EXPECT_EQ(s.what(), ref_string);
-  }
+    try{
+        Table table = Table::parseFile("file_json.json");
+    }
+    catch(std::runtime_error& s)
+    {
+        EXPECT_EQ(s.what(), ref_string);
+    }
 }
 
 TEST(Json_any, From_json)
 {
-  std::string responseString = R"(["Hello, MGTU", 22, 4.5, ["IU-1", "IU-2", "IU-3"]])";
-  json responseJson = json::parse(responseString);
+    std::string responseString = \
+    R"(["Hello, MGTU", 22, 4.5, ["IU-1", "IU-2", "IU-3"]])";
+    json responseJson = json::parse(responseString);
 
-  std::any object_0;
-  responseJson[0].get_to(object_0);
-  EXPECT_EQ(std::any_cast<std::string>(object_0), "Hello, MGTU");
+    std::any object_0;
+    responseJson[0].get_to(object_0);
+    EXPECT_EQ(std::any_cast<std::string>(object_0), "Hello, MGTU");
 
-  std::any object_1;
-  responseJson[1].get_to(object_1);
-  EXPECT_EQ(std::any_cast<int>(object_1), 22);
+    std::any object_1;
+    responseJson[1].get_to(object_1);
+    EXPECT_EQ(std::any_cast<int>(object_1), 22);
 
-  std::any object_2;
-  responseJson[2].get_to(object_2);
-  EXPECT_EQ(std::any_cast<double>(object_2), 4.5);
+    std::any object_2;
+    responseJson[2].get_to(object_2);
+    EXPECT_EQ(std::any_cast<double>(object_2), 4.5);
 
-  std::any object_3;
-  responseJson[3].get_to(object_3);
-  EXPECT_EQ(std::any_cast<std::vector<std::string>>(object_3)[0], "IU-1");
-  EXPECT_EQ(std::any_cast<std::vector<std::string>>(object_3)[1], "IU-2");
-  EXPECT_EQ(std::any_cast<std::vector<std::string>>(object_3)[2], "IU-3");
+    std::any object_3;
+    responseJson[3].get_to(object_3);
+    EXPECT_EQ(std::any_cast<std::vector<std::string>>(object_3)[0], "IU-1");
+    EXPECT_EQ(std::any_cast<std::vector<std::string>>(object_3)[1], "IU-2");
+    EXPECT_EQ(std::any_cast<std::vector<std::string>>(object_3)[2], "IU-3");
 
 }
 
 TEST(Student, name) {
 
-Student student;
+    Student student;
 
-student.set_name("NIKO");
+    student.set_name("NIKO");
 
-  std::stringstream str;
-  student.print_name(str);
-  EXPECT_EQ(str.str(), "NIKO");
+    std::stringstream str;
+    student.print_name(str);
+    EXPECT_EQ(str.str(), "NIKO");
 }
 
 TEST(Student, group) {
 
-  Student student;
+    Student student;
 
-  std::stringstream str;
+    std::stringstream str;
 
-  student.set_group(std::string ("1"));
-  student.print_group(str);
-  EXPECT_EQ(str.str(), "1");
+    student.set_group(std::string ("1"));
+    student.print_group(str);
+    EXPECT_EQ(str.str(), "1");
 
-  student.set_group(31);
-  str.str(std::string());
-  student.print_group(str);
-  EXPECT_EQ(str.str(), "31");
+    student.set_group(31);
+    str.str(std::string());
+    student.print_group(str);
+    EXPECT_EQ(str.str(), "31");
 
-  student.set_group(31.55);
-  str.str(std::string());
-  student.print_group(str);
-  EXPECT_EQ(str.str(), "ERR");
+    student.set_group(31.55);
+    str.str(std::string());
+    student.print_group(str);
+    EXPECT_EQ(str.str(), "ERR");
 }
 
 TEST(Student, avg) {
+    Student student;
 
-  Student student;
+    std::stringstream str;
 
-  std::stringstream str;
+    student.set_avg(std::string ("3"));
+    student.print_avg(str);
+    EXPECT_EQ(str.str(), "3");
 
-  student.set_avg(std::string ("3"));
-  student.print_avg(str);
-  EXPECT_EQ(str.str(), "3");
+    student.set_avg(4);
+    str.str(std::string());
+    student.print_avg(str);
+    EXPECT_EQ(str.str(), "4");
 
-  student.set_avg(4);
-  str.str(std::string());
-  student.print_avg(str);
-  EXPECT_EQ(str.str(), "4");
+    student.set_avg(4.25);
+    str.str(std::string());
+    student.print_avg(str);
+    EXPECT_EQ(str.str(), "4.25");
 
-
-  student.set_avg(4.25);
-  str.str(std::string());
-  student.print_avg(str);
-  EXPECT_EQ(str.str(), "4.25");
-
-  student.set_avg((size_t) 5);
-  str.str(std::string());
-  student.print_avg(str);
-  EXPECT_EQ(str.str(), "ERR");
+    student.set_avg((size_t) 5);
+    str.str(std::string());
+    student.print_avg(str);
+    EXPECT_EQ(str.str(), "ERR");
 }
 
 TEST(Student, debt) {
+    Student student;
 
-  Student student;
+    std::stringstream str;
 
-  std::stringstream str;
+    student.set_debt(std::string ("Assembler"));
+    student.print_debt(str);
+    EXPECT_EQ(str.str(), "Assembler");
 
-  student.set_debt(std::string ("Assembler"));
-  student.print_debt(str);
-  EXPECT_EQ(str.str(), "Assembler");
+    student.set_debt(nullptr);
+    str.str(std::string());
+    student.print_debt(str);
+    EXPECT_EQ(str.str(), "null");
 
-  student.set_debt(nullptr);
-  str.str(std::string());
-  student.print_debt(str);
-  EXPECT_EQ(str.str(), "null");
+    student.set_debt((size_t) 5);
+    str.str(std::string());
+    student.print_debt(str);
+    EXPECT_EQ(str.str(), "ERR");
 
-  student.set_debt((size_t) 5);
-  str.str(std::string());
-  student.print_debt(str);
-  EXPECT_EQ(str.str(), "ERR");
-
-  std::vector <std::string> data = {"C++", "Assembler"};
-  student.set_debt(data);
-  str.str(std::string());
-  student.print_debt(str);
-  EXPECT_EQ(str.str(), "2 items");
+    std::vector <std::string> data = {"C++", "Assembler"};
+    student.set_debt(data);
+    str.str(std::string());
+    student.print_debt(str);
+    EXPECT_EQ(str.str(), "2 items");
 
 }
 
 TEST(Student, length_name) {
-  Student student;
+    Student student;
 
-  student.set_name("NIKO");
-  EXPECT_EQ(student.length_name(), (size_t) 4);
+    student.set_name("NIKO");
+    EXPECT_EQ(student.length_name(), (size_t) 4);
 }
 
 TEST(Student, length_group) {
+    Student student;
 
-  Student student;
+    student.set_group(std::string ("1"));
+    EXPECT_EQ(student.length_group(), (size_t) 1);
 
-  student.set_group(std::string ("1"));
-  EXPECT_EQ(student.length_group(), (size_t) 1);
+    student.set_group(31);
+    EXPECT_EQ(student.length_group(), (size_t) 2);
 
-  student.set_group(31);
-  EXPECT_EQ(student.length_group(), (size_t) 2);
-
-  student.set_group(31.55);
-  EXPECT_EQ(student.length_group(), (size_t) 3);
+    student.set_group(31.55);
+    EXPECT_EQ(student.length_group(), (size_t) 3);
 }
 
 TEST(Student, length_avg) {
+    Student student;
 
-  Student student;
+    student.set_avg(std::string ("3.3"));
+    EXPECT_EQ(student.length_avg(), (size_t) 3);
 
-  student.set_avg(std::string ("3.3"));
-  EXPECT_EQ(student.length_avg(), (size_t) 3);
-
-  student.set_avg(4);
-  EXPECT_EQ(student.length_avg(), (size_t) 1);
+    student.set_avg(4);
+    EXPECT_EQ(student.length_avg(), (size_t) 1);
 
 
-  student.set_avg(4.25);
-  EXPECT_EQ(student.length_avg(), (size_t) 4);
+    student.set_avg(4.25);
+    EXPECT_EQ(student.length_avg(), (size_t) 4);
 
-  student.set_avg((size_t) 5);
-  EXPECT_EQ(student.length_avg(), (size_t) 3);
+    student.set_avg((size_t) 5);
+    EXPECT_EQ(student.length_avg(), (size_t) 3);
 }
 
 TEST(Student, length_debt) {
+    Student student;
 
-  Student student;
+    student.set_debt(std::string ("Assembler"));
+    EXPECT_EQ(student.length_debt(), (size_t) 9);
 
-  student.set_debt(std::string ("Assembler"));
-  EXPECT_EQ(student.length_debt(), (size_t) 9);
+    student.set_debt(nullptr);
+    EXPECT_EQ(student.length_debt(), (size_t) 4);
 
-  student.set_debt(nullptr);
-  EXPECT_EQ(student.length_debt(), (size_t) 4);
+    student.set_debt((size_t) 5);
+    EXPECT_EQ(student.length_debt(), (size_t) 3);
 
-  student.set_debt((size_t) 5);
-  EXPECT_EQ(student.length_debt(), (size_t) 3);
-
-  std::vector <std::string> data = {"C++", "Assembler"};
-  student.set_debt(data);
-  EXPECT_EQ(student.length_debt(), (size_t) 7);
-
+    std::vector <std::string> data = {"C++", "Assembler"};
+    student.set_debt(data);
+    EXPECT_EQ(student.length_debt(), (size_t) 7);
 }
 
 TEST(Student, FromJson) {
-  json j = json::parse(R"({
+    json j = json::parse(R"({
   "name": "Ivanov Petr",
   "group": "1",
   "avg": "4.25",
   "debt": null
 })");
-  Student student;
+    Student student;
 
+    Student::from_json(j, student);
+    EXPECT_EQ(student.get_name(), std::string("Ivanov Petr"));
+    EXPECT_EQ(std::any_cast<std::string>(student.get_group()), "1");
+    EXPECT_EQ(std::any_cast<std::string>(student.get_avg()), "4.25");
+    EXPECT_EQ(std::any_cast<std::nullptr_t>(student.get_debt()), nullptr);
 
-  Student::from_json(j, student);
-  EXPECT_EQ(student.get_name(), std::string("Ivanov Petr"));
-  EXPECT_EQ(std::any_cast<std::string>(student.get_group()), "1");
-  EXPECT_EQ(std::any_cast<std::string>(student.get_avg()), "4.25");
-  EXPECT_EQ(std::any_cast<std::nullptr_t>(student.get_debt()), nullptr);
-
-  j = json::parse(R"({
+    j = json::parse(R"({
   "name": "Sidorov Ivan",
   "group": 31,
   "avg": 4,
   "debt": "C++"
 })");
-  Student::from_json(j, student);
-  EXPECT_EQ(student.get_name(), std::string("Sidorov Ivan"));
-  EXPECT_EQ(std::any_cast<int>(student.get_group()), 31);
-  EXPECT_EQ(std::any_cast<int>(student.get_avg()), 4);
-  EXPECT_EQ(std::any_cast<std::string>(student.get_debt()), "C++");
+    Student::from_json(j, student);
+    EXPECT_EQ(student.get_name(), std::string("Sidorov Ivan"));
+    EXPECT_EQ(std::any_cast<int>(student.get_group()), 31);
+    EXPECT_EQ(std::any_cast<int>(student.get_avg()), 4);
+    EXPECT_EQ(std::any_cast<std::string>(student.get_debt()), "C++");
 
-  j = json::parse(R"({
+    j = json::parse(R"({
   "name": "Petrov Nikita",
   "group": "IU8-31",
   "avg": 3.33,
@@ -358,11 +347,11 @@ TEST(Student, FromJson) {
     "Network"
   ]
 })");
-  Student::from_json(j, student);
-  EXPECT_EQ(student.get_name(), std::string("Petrov Nikita"));
-  EXPECT_EQ(std::any_cast<std::string>(student.get_group()), "IU8-31");
-  EXPECT_EQ(std::any_cast<double>(student.get_avg()), (double)3.33);
-  EXPECT_EQ(std::any_cast<std::vector<std::string>>(student.get_debt()),std::vector<std::string>({"C++", "Linux", "Network"}));
+    Student::from_json(j, student);
+    EXPECT_EQ(student.get_name(), std::string("Petrov Nikita"));
+    EXPECT_EQ(std::any_cast<std::string>(student.get_group()), "IU8-31");
+    EXPECT_EQ(std::any_cast<double>(student.get_avg()), (double)3.33);
+    EXPECT_EQ(std::any_cast<std::vector<std::string>>(student.get_debt()),std::vector<std::string>({"C++", "Linux", "Network"}));
 }
 
 TEST(Table, Error_item){
@@ -383,7 +372,7 @@ R"({
     std::ofstream file_json;//файловый вывод
 
     file_json.open("file_json.json");
-    file_json<<responseString;
+    file_json << responseString;
     file_json.close();
     std::string ref_string = "Items should be in file file_json.json";
 
@@ -397,7 +386,7 @@ R"({
 }
 
 TEST(Table, Error_meta){
-    std::string responseString=\
+    std::string responseString = \
 R"({
   "items": [{
       "name": "Sidorov Ivan",

@@ -9,6 +9,8 @@
 ../include/Student.hpp
 json_any.hpp
 ../include/json_any.hpp
+string
+-
 
 ../include/Table.hpp
 vector
@@ -641,8 +643,6 @@ cstring
 -
 json_any.hpp
 /home/hacker/Study/Programming_3sem/LR1/lab01-parser/tests/json_any.hpp
-sstream
--
 vector
 -
 

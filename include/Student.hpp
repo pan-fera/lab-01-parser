@@ -1,10 +1,14 @@
-#ifndef PARSER_STUDENT_HPP
-#define PARSER_STUDENT_HPP
+//
+// Created by hacker on 26.09.2020.
+//
+#ifndef INCLUDE_STUDENT_HPP
+#define INCLUDE_STUDENT_HPP
 #include "json_any.hpp"
+#include <string>
+
 using nlohmann::json;
 class Student {
  public:
-
   size_t length_name() const;
   size_t length_group() const;
   size_t length_avg() const;
@@ -26,12 +30,12 @@ class Student {
   std::any get_group()const;
   std::any get_avg() const;
   std::any get_debt() const;
+
   private:
   std::string name;
   std::any group;
   std::any avg;
   std::any debt;
-
 };
 
-#endif  // PARSER_STUDENT_HPP
+#endif  // INCLUDE_STUDENT_HPP

@@ -2,37 +2,27 @@
 // Created by hacker on 27.09.2020.
 //
 
-#ifndef PARSER_TABLE_HPP
-#define PARSER_TABLE_HPP
+#ifndef INCLUDE_TABLE_HPP
+#define INCLUDE_TABLE_HPP
 
 #include <vector>
 #include <string>
-
 #include "Student.hpp"
 
-//class Tester;
-
 class Table {
- public:
-  explicit Table(const json& j);
-  ~Table();
+public:
+    explicit Table(const json& j);
 
-  //void print(std::ostream& out) const;
+    ~Table();
 
+    static Table parseFile(const std::string& s);
 
-  static Table parseFile(const std::string& s);
-  size_t w_name, w_group, w_avg, w_debt, w_space;
+    size_t w_name, w_group, w_avg, w_debt, w_space;
 
-  void print(std::ostream& out) const;
+    void print(std::ostream& out) const;
 
-  std::vector<Student> m_students;
-  std::vector<size_t> m_w;
-// std::cout - это объект std::ostream
-
+    std::vector<Student> m_students;
+    std::vector<size_t> m_w;
 };
 
-//std::ostream& operator<< (std::ostream &out, const Table &table);
-
-
-
-#endif  // PARSER_TABLE_HPP
+#endif  // INCLUDE_TABLE_HPP

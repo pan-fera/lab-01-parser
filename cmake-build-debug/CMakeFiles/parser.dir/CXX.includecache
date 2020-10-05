@@ -9,6 +9,8 @@
 ../include/Student.hpp
 json_any.hpp
 ../include/json_any.hpp
+string
+-
 
 ../include/Table.hpp
 vector
@@ -354,6 +356,16 @@ cstring
 limits
 -
 type_traits
+-
+
+/home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/Student.cpp
+Student.hpp
+/home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/Student.hpp
+iostream
+-
+cstdlib
+-
+string
 -
 
 /home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/Table.cpp

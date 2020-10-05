@@ -2,8 +2,8 @@
 // Created by hacker on 26.09.2020.
 //
 
-#ifndef PARSER_JSON_ANY_HPP
-#define PARSER_JSON_ANY_HPP
+#ifndef INCLUDE_JSON_ANY_HPP
+#define INCLUDE_JSON_ANY_HPP
 #include <nlohmann/json.hpp>
 #include <any>
 #include <string>
@@ -33,4 +33,4 @@ struct adl_serializer<std::any> { //специализация шаблона
 
 
 }// namespace nlohmann
-#endif  // PARSER_JSON_ANY_HPP
+#endif  // INCLUDE_JSON_ANY_HPP
