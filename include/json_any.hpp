@@ -1,9 +1,9 @@
 //
 // Created by hacker on 26.09.2020.
 //
-
-#ifndef INCLUDE_JSON_ANY_HPP
-#define INCLUDE_JSON_ANY_HPP
+// Copyright 2018 Your Name <hacker>
+#ifndef INCLUDE_JSON_ANY_HPP_
+#define INCLUDE_JSON_ANY_HPP_
 #include <nlohmann/json.hpp>
 #include <any>
 #include <string>
@@ -11,7 +11,9 @@
 namespace nlohmann { //пространство имен
 template <>
 struct adl_serializer<std::any> { //специализация шаблона
-  static void from_json(const json& j, std::any& any_var) { //Эта функция обычно вызывается get()функцией класса basic_json (либо явным образом, либо с помощью операторов преобразования).
+  static void from_json (const json& j, std::any& any_var) {
+      //Эта функция обычно вызывается get()функцией класса
+      // basic_json (либо явным образом, либо с помощью операторов преобразования).
     if (j.is_null()) {
       any_var = nullptr;
     } else if (j.is_number_integer()) {
@@ -33,4 +35,4 @@ struct adl_serializer<std::any> { //специализация шаблона
 
 
 }// namespace nlohmann
-#endif  // INCLUDE_JSON_ANY_HPP
+#endif  // INCLUDE_JSON_ANY_HPP_

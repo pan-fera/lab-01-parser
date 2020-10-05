@@ -1,9 +1,9 @@
 //
 // Created by hacker on 27.09.2020.
 //
-
-#ifndef INCLUDE_TABLE_HPP
-#define INCLUDE_TABLE_HPP
+// Copyright 2018 Your Name <hacker>
+#ifndef INCLUDE_TABLE_HPP_
+#define INCLUDE_TABLE_HPP_
 
 #include <vector>
 #include <string>
@@ -24,5 +24,4 @@ public:
     std::vector<Student> m_students;
     std::vector<size_t> m_w;
 };
-
-#endif  // INCLUDE_TABLE_HPP
+#endif  // INCLUDE_TABLE_HPP_

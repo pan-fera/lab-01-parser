@@ -70,10 +70,12 @@ size_t Student::length_group() const
 
 size_t Student::length_avg() const
 {
-    if (avg.type() == typeid(int))
+    if (avg.type() == typeid(int)) {
         return (std::to_string(std::any_cast<int>(avg)).length());
-    else if (avg.type() == typeid(std::string))
+    }
+    else if (avg.type() == typeid(std::string)) {
         return (std::any_cast<std::string>(avg)).length();
+    }
     else if (avg.type() == typeid(double)) {
         double b = std::any_cast<double>(avg);
         int k = (int) b;
@@ -81,16 +83,16 @@ size_t Student::length_avg() const
         do {
             count++;
             k/=10;
-        }while(k != 0);
-        while((int)b-b != 0){
+        } while(k != 0);
+        while( (int) b-b != 0){
             count++;
             b*=10;
         }
         return count;
     }
-    else
+    else {
         return 3;
-
+    }
 }
 size_t Student::length_debt() const
 {
@@ -99,7 +101,8 @@ size_t Student::length_debt() const
     else if (debt.type() == typeid(nullptr))
         return 4;
     else if (debt.type() == typeid(std::vector <std::string>))
-        return (std::to_string((std::any_cast<std::vector<std::string>>(debt)).size()).length()+6);
+        return (std::to_string \
+        ((std::any_cast<std::vector<std::string>>(debt)).size()).length()+6);
     else
         return 3;
 }
@@ -120,7 +123,6 @@ void Student::set_debt(std::any _debt)
 {
     debt = _debt;
 }
-
 std::string Student::get_name() const{
     return name;
 }

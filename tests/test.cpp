@@ -1,6 +1,7 @@
 //
 // Created by hacker on 26.09.2020.
 //
+// Copyright 2018 Your Name <hacker>
 #include <gtest/gtest.h>
 #include <iostream>
 #include "Table.hpp"
@@ -111,7 +112,6 @@ R"({
     {
         EXPECT_EQ(s.what(), ref_string);
     }
-
 }
 
 TEST(Table, _meta) {
@@ -169,11 +169,9 @@ TEST(Json_any, From_json)
     EXPECT_EQ(std::any_cast<std::vector<std::string>>(object_3)[0], "IU-1");
     EXPECT_EQ(std::any_cast<std::vector<std::string>>(object_3)[1], "IU-2");
     EXPECT_EQ(std::any_cast<std::vector<std::string>>(object_3)[2], "IU-3");
-
 }
 
 TEST(Student, name) {
-
     Student student;
 
     student.set_name("NIKO");
@@ -184,9 +182,7 @@ TEST(Student, name) {
 }
 
 TEST(Student, group) {
-
     Student student;
-
     std::stringstream str;
 
     student.set_group(std::string ("1"));
@@ -206,7 +202,6 @@ TEST(Student, group) {
 
 TEST(Student, avg) {
     Student student;
-
     std::stringstream str;
 
     student.set_avg(std::string ("3"));
@@ -231,7 +226,6 @@ TEST(Student, avg) {
 
 TEST(Student, debt) {
     Student student;
-
     std::stringstream str;
 
     student.set_debt(std::string ("Assembler"));
@@ -253,12 +247,10 @@ TEST(Student, debt) {
     str.str(std::string());
     student.print_debt(str);
     EXPECT_EQ(str.str(), "2 items");
-
 }
 
 TEST(Student, length_name) {
     Student student;
-
     student.set_name("NIKO");
     EXPECT_EQ(student.length_name(), (size_t) 4);
 }
@@ -351,11 +343,12 @@ TEST(Student, FromJson) {
     EXPECT_EQ(student.get_name(), std::string("Petrov Nikita"));
     EXPECT_EQ(std::any_cast<std::string>(student.get_group()), "IU8-31");
     EXPECT_EQ(std::any_cast<double>(student.get_avg()), (double)3.33);
-    EXPECT_EQ(std::any_cast<std::vector<std::string>>(student.get_debt()),std::vector<std::string>({"C++", "Linux", "Network"}));
+    EXPECT_EQ(std::any_cast<std::vector<std::string>> \
+            (student.get_debt()), std::vector<std::string>({"C++", "Linux", "Network"}));
 }
 
 TEST(Table, Error_item){
-    std::string responseString=\
+    std::string responseString = \
 R"({
   "items": [{
       "name": "Sidorov Ivan",
@@ -403,7 +396,7 @@ R"({
     std::ofstream file_json;//файловый вывод
 
     file_json.open("file_json.json");
-    file_json<<responseString;
+    file_json << responseString;
     file_json.close();
     std::string ref_string = "_meta should be in file file_json.json";
 

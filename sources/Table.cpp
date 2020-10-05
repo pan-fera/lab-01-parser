@@ -1,6 +1,7 @@
 //
 // Created by hacker on 27.09.2020.
 //
+// Copyright 2018 Your Name <hacker>
 #include <iostream>
 #include "Table.hpp"
 #include <fstream>

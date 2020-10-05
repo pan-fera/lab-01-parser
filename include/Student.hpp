@@ -1,8 +1,9 @@
 //
 // Created by hacker on 26.09.2020.
 //
-#ifndef INCLUDE_STUDENT_HPP
-#define INCLUDE_STUDENT_HPP
+// Copyright 2018 Your Name <hacker>
+#ifndef INCLUDE_STUDENT_HPP_
+#define INCLUDE_STUDENT_HPP_
 #include "json_any.hpp"
 #include <string>
 
@@ -37,5 +38,4 @@ class Student {
   std::any avg;
   std::any debt;
 };
-
-#endif  // INCLUDE_STUDENT_HPP
+#endif  // INCLUDE_STUDENT_HPP_
