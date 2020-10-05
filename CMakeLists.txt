@@ -28,9 +28,7 @@ find_package(GTest CONFIG REQUIRED)
 find_package(nlohmann_json 3.2.0 REQUIRED)
 
 add_library(parser STATIC
-  # enum your files and delete this comment
-  ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/sources/Student.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/Student.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/sources/Table.cpp
         )
 add_executable(tests

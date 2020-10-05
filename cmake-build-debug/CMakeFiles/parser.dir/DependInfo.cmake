@@ -6,7 +6,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/Student.cpp" "/home/hacker/Study/Programming_3sem/LR1/lab01-parser/cmake-build-debug/CMakeFiles/parser.dir/sources/Student.cpp.o"
   "/home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/Table.cpp" "/home/hacker/Study/Programming_3sem/LR1/lab01-parser/cmake-build-debug/CMakeFiles/parser.dir/sources/Table.cpp.o"
-  "/home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/source.cpp" "/home/hacker/Study/Programming_3sem/LR1/lab01-parser/cmake-build-debug/CMakeFiles/parser.dir/sources/source.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

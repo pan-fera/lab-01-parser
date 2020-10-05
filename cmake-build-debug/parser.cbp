@@ -154,9 +154,6 @@
 		<Unit filename="/home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/Table.cpp">
 			<Option target="parser"/>
 		</Unit>
-		<Unit filename="/home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/source.cpp">
-			<Option target="parser"/>
-		</Unit>
 		<Unit filename="/home/hacker/Study/Programming_3sem/LR1/lab01-parser/tests/test.cpp">
 			<Option target="tests"/>
 		</Unit>
