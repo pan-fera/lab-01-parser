@@ -337,7 +337,8 @@ TEST(Student, FromJson) {
     Student::from_json(j, student);
     EXPECT_EQ(student.get_name(), std::string("Petrov Nikita"));
     EXPECT_EQ(std::any_cast<std::string>(student.get_group()), "IU8-31");
-    EXPECT_EQ(std::any_cast<double>(student.get_avg()), static_cast<double>(3.33));
+    EXPECT_EQ(std::any_cast<double>(student.get_avg()), \
+            static_cast<double>(3.33));
     EXPECT_EQ(std::any_cast<std::vector<std::string>> (student.get_debt()), \
             std::vector<std::string> ({"C++", "Linux", "Network"}));
 }

@@ -1,7 +1,7 @@
 //
 // Created by hacker on 26.09.2020.
 //
-// Copyright 2018 Your Name <hacker>
+// Copyright 2020 Your Name <hacker>
 #ifndef INCLUDE_JSON_ANY_HPP_
 #define INCLUDE_JSON_ANY_HPP_
 #include <nlohmann/json.hpp>
