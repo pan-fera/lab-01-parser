@@ -637,4 +637,12 @@ Table.hpp
 /home/hacker/Study/Programming_3sem/LR1/lab01-parser/tests/Table.hpp
 fstream
 -
+cstring
+-
+json_any.hpp
+/home/hacker/Study/Programming_3sem/LR1/lab01-parser/tests/json_any.hpp
+sstream
+-
+vector
+-
 

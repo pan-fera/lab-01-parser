@@ -18,8 +18,6 @@ string
 Student.hpp
 ../include/Student.hpp
 
-../include/header.hpp
-
 ../include/json_any.hpp
 nlohmann/json.hpp
 -
@@ -358,31 +356,11 @@ limits
 type_traits
 -
 
-/home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/Student.cpp
-Student.hpp
-/home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/Student.hpp
-iostream
--
-cstdlib
--
-sstream
--
-string
--
-iomanip
--
-
 /home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/Table.cpp
 iostream
 -
 Table.hpp
 /home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/Table.hpp
 fstream
--
-
-/home/hacker/Study/Programming_3sem/LR1/lab01-parser/sources/source.cpp
-header.hpp
--
-iostream
 -
 

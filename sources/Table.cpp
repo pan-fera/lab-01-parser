@@ -5,21 +5,7 @@
 #include "Table.hpp"
 #include <fstream>
 
-Table::Table(const std::string& s) :
-m_students(0), m_w(0){
-w_name = 4;
-w_group = 4;
-w_avg = 3;
-w_debt = 4;
-w_space = 2;
 
-m_w.push_back(w_name);
-m_w.push_back(w_group);
-m_w.push_back(w_avg);
-m_w.push_back(w_debt);
-
-std::cout<<s;
-}
 Table::Table(const json& j):
   m_students(0), m_w(0){
 
@@ -29,10 +15,10 @@ Table::Table(const json& j):
   w_debt = 4;
   w_space = 2;
 
-  m_w.push_back(w_name+w_space);
-  m_w.push_back(w_group+w_space);
-  m_w.push_back(w_avg+w_space);
-  m_w.push_back(w_debt+w_space);
+  m_w.push_back(w_name);
+  m_w.push_back(w_group);
+  m_w.push_back(w_avg);
+  m_w.push_back(w_debt);
 
   for (json::const_iterator it = j.at("items").begin(); it != j.at("items").end(); ++it) {
 
@@ -43,55 +29,70 @@ Table::Table(const json& j):
 
  for (size_t i =0; i < m_students.size(); i++)
   {
-   /*m_students[i].print_name();
-    std::cout<<m_students[i].length_name()<<"\n";
-    m_students[i].print_group();
-    std::cout<<m_students[i].length_group()<<"\n";
-    m_students[i].print_avg();
-    std::cout<<m_students[i].length_avg()<<"\n";
-    m_students[i].print_debt();
-    std::cout<<m_students[i].length_debt()<<"\n";*/
-
-  m_w[0] = (m_students[i].length_name()+w_space>m_w[0])? (m_students[i].length_name()+w_space):m_w[0];
-   m_w[1] = (m_students[i].length_group()+w_space>m_w[1])? (m_students[i].length_group()+w_space):m_w[1];
-    m_w[2] = (m_students[i].length_avg()+w_space>m_w[2])? (m_students[i].length_avg()+w_space):m_w[2];
-    m_w[3] = (m_students[i].length_debt()+w_space>m_w[3])? (m_students[i].length_debt()+w_space):m_w[3];
+    m_w[0] = (m_students[i].length_name()>m_w[0])? m_students[i].length_name():m_w[0];
+    m_w[1] = (m_students[i].length_group()>m_w[1])? m_students[i].length_group():m_w[1];
+    m_w[2] = (m_students[i].length_avg()>m_w[2])? m_students[i].length_avg():m_w[2];
+    m_w[3] = (m_students[i].length_debt()>m_w[3])? m_students[i].length_debt():m_w[3];
   }
+m_w[0]+=w_space;
+m_w[1]+=w_space;
+m_w[2]+=w_space;
+m_w[3]+=w_space;
+}
 
-}
-Table Table::parse(const std::string& s) {
-  Table table(s);
-  return table;
-}
 
 Table Table::parseFile(const std::string& s) {
-  std::ifstream file;
+  //std::ifstream file;
 
-  file.open(s, std::ios::in);
+  std::ifstream file(s);
+  if (!file) {
+    throw std::runtime_error("unable to open json: " + s);
+  }
+
   json j;
   file>>j;
+
+  if(j.find("items")==j.end())
+  {
+      throw std::runtime_error("Items should be in file " + s);
+  }
+    if(j.find("_meta")==j.end())
+    {
+        throw std::runtime_error("_meta should be in file " + s);
+    }
+
+  if(!j.at("items").is_array())
+  {
+    throw std::runtime_error("Items should be array in " + s);
+  }
+
+
+  if(j.at("items").size()!=std::any_cast<std::size_t>(j.at("_meta").at("count").get<std::size_t>()))
+  {
+    throw std::runtime_error("Count elements in array items != _meta in file " + s);
+  }
   Table table(j);
   return table;
 }
 
-void Table::print()
+void Table::print(std::ostream& out) const
 {
   int column = 4;
 
 
-  std::cout << "| name ";
+  out<<"| name ";
   for (size_t i = 0; i < m_w[0] - w_name - w_space; i++)
-    std::cout << " ";
-  std::cout << "| group ";
+    out<<" ";
+  out << "| group ";
   for (size_t i = 0; i < m_w[1] - w_group - w_space; i++)
-    std::cout << " ";
-  std::cout << "| avg ";
+    out << " ";
+  out << "| avg ";
   for (size_t i = 0; i < m_w[2] - w_avg - w_space; i++)
-    std::cout << " ";
-  std::cout << "| debt ";
+    out << " ";
+  out << "| debt ";
   for (size_t i = 0; i < m_w[3] - w_debt - w_space; i++)
-    std::cout << " ";
-  std::cout << "|" << std::endl;
+    out << " ";
+  out << "|" << std::endl;
     std::string stick  = "|";
     for (int i = 0; i < column; ++i) {
 
@@ -99,35 +100,42 @@ void Table::print()
             stick += "-";
         stick += "|";
     }
-    std::cout<<stick<<std::endl;
+  out<<stick<<std::endl;
 
 
   for(size_t m =0; m<m_students.size(); m++)
   {
-    std::cout << "| ";
-    m_students[m].print_name();
-    for (size_t i = 0; i < m_w[0] - m_students[m].length_name() - w_space; i++) {
-      std::cout << " ";
-    }
-    std::cout << " | ";
-    m_students[m].print_group();
-    std::cout << " ";
+    out << "| ";
+    m_students[m].print_name(out);
+    for (size_t i = 0; i < m_w[0] - m_students[m].length_name() - w_space; i++)
+      out << " ";
+    out << " | ";
+
+    m_students[m].print_group(out);
+
+    out << " ";
     for (size_t i = 0; i < m_w[1] - m_students[m].length_group() - w_space; i++)
-      std::cout << " ";
-    std::cout << "| ";
-    m_students[m].print_avg();
-    std::cout << " ";
+      out << " ";
+    out << "| ";
+    m_students[m].print_avg(out);
+    out << " ";
     for (size_t i = 0; i < m_w[2] - m_students[m].length_avg() - w_space; i++)
-      std::cout << " ";
-    std::cout << "| ";
-    m_students[m].print_debt();
-    std::cout << " ";
+      out << " ";
+    out << "| ";
+    m_students[m].print_debt(out);
+    out << " ";
     for (size_t i = 0; i < m_w[3] - m_students[m].length_debt() - w_space; i++)
-      std::cout << " ";
-    std::cout << "|" << std::endl << stick << std::endl;
+      out << " ";
+    out << "|" << std::endl << stick << std::endl;
   }
+
 }
 
 Table::~Table(){
 
 }
+
+/*std::ostream& operator<<(std::ostream& out, const Table& table) {
+  table.print(out);
+  return out;
+}*/
