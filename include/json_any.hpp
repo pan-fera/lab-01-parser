@@ -11,9 +11,10 @@
 namespace nlohmann { //пространство имен
 template <>
 struct adl_serializer<std::any> { //специализация шаблона
-  static void from_json (const json& j, std::any& any_var) {
+  static void from_json(const json& j, std::any& any_var) {
       //Эта функция обычно вызывается get()функцией класса
-      // basic_json (либо явным образом, либо с помощью операторов преобразования).
+      // basic_json (либо явным образом, либо с помощью
+      // операторов преобразования).
     if (j.is_null()) {
       any_var = nullptr;
     } else if (j.is_number_integer()) {

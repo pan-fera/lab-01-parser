@@ -1,6 +1,7 @@
 //
 // Created by hacker on 26.09.2020.
 //
+// Copyright 2020 hacker
 #include "Student.hpp"
 #include <iostream>
 #include <cstdlib> // для system
@@ -72,25 +73,22 @@ size_t Student::length_avg() const
 {
     if (avg.type() == typeid(int)) {
         return (std::to_string(std::any_cast<int>(avg)).length());
-    }
-    else if (avg.type() == typeid(std::string)) {
+    }else if (avg.type() == typeid(std::string)) {
         return (std::any_cast<std::string>(avg)).length();
-    }
-    else if (avg.type() == typeid(double)) {
+    }else if (avg.type() == typeid(double)) {
         double b = std::any_cast<double>(avg);
-        int k = (int) b;
+        int k = static_cast<int>(b);
         int count = 1;
         do {
             count++;
             k/=10;
         } while(k != 0);
-        while( (int) b-b != 0){
+        while((static_cast<int>(b))-b != 0){
             count++;
             b*=10;
         }
         return count;
-    }
-    else {
+    }else {
         return 3;
     }
 }

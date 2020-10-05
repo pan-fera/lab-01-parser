@@ -5,8 +5,6 @@
 #include <iostream>
 #include "Table.hpp"
 #include <fstream>
-
-
 Table::Table(const json& j):
         m_students(0), m_w(0){
     w_name = 4;
@@ -58,20 +56,16 @@ Table Table::parseFile(const std::string& s) {
     {
         throw std::runtime_error("Items should be in file " + s);
     }
-
     if(j.find("_meta") == j.end())
     {
         throw std::runtime_error("_meta should be in file " + s);
     }
-
     if(!j.at("items").is_array())
     {
         throw std::runtime_error("Items should be array in " + s);
     }
-
-
-    if(j.at("items").size() !=
-            std::any_cast<std::size_t>(j.at("_meta").at("count").get<std::size_t>()))
+    if(j.at("items").size() != std::any_cast<std::size_t> \
+            (j.at("_meta").at("count").get<std::size_t>()))
     {
         throw std::runtime_error("Count elements in array items != _meta in file " + s);
     }
@@ -133,7 +127,6 @@ void Table::print(std::ostream& out) const
             out << " ";
         out << "|" << std::endl << stick << std::endl;
     }
-
 }
 
 Table::~Table(){

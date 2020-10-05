@@ -1,7 +1,7 @@
 //
 // Created by hacker on 26.09.2020.
 //
-// Copyright 2018 Your Name <hacker>
+// Copyright 2020 hacker
 #include <gtest/gtest.h>
 #include <iostream>
 #include "Table.hpp"
@@ -184,7 +184,6 @@ TEST(Student, name) {
 TEST(Student, group) {
     Student student;
     std::stringstream str;
-
     student.set_group(std::string ("1"));
     student.print_group(str);
     EXPECT_EQ(str.str(), "1");
@@ -227,7 +226,6 @@ TEST(Student, avg) {
 TEST(Student, debt) {
     Student student;
     std::stringstream str;
-
     student.set_debt(std::string ("Assembler"));
     student.print_debt(str);
     EXPECT_EQ(str.str(), "Assembler");
@@ -257,7 +255,6 @@ TEST(Student, length_name) {
 
 TEST(Student, length_group) {
     Student student;
-
     student.set_group(std::string ("1"));
     EXPECT_EQ(student.length_group(), (size_t) 1);
 
@@ -270,7 +267,6 @@ TEST(Student, length_group) {
 
 TEST(Student, length_avg) {
     Student student;
-
     student.set_avg(std::string ("3.3"));
     EXPECT_EQ(student.length_avg(), (size_t) 3);
 
@@ -287,7 +283,6 @@ TEST(Student, length_avg) {
 
 TEST(Student, length_debt) {
     Student student;
-
     student.set_debt(std::string ("Assembler"));
     EXPECT_EQ(student.length_debt(), (size_t) 9);
 

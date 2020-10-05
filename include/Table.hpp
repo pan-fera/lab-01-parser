@@ -1,7 +1,7 @@
 //
 // Created by hacker on 27.09.2020.
 //
-// Copyright 2018 Your Name <hacker>
+// Copyright 2018 hacker
 #ifndef INCLUDE_TABLE_HPP_
 #define INCLUDE_TABLE_HPP_
 
