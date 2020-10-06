@@ -346,7 +346,7 @@ TEST(Student, FromJson) {
 TEST(Table, Error_item){
     std::string responseString = \
 R"({
-  "items": [{
+  "ites": [{
       "name": "Sidorov Ivan",
       "group": 31,
       "avg": 4,
