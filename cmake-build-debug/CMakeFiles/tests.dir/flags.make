@@ -6,5 +6,5 @@ CXX_FLAGS =  -pedantic -Werror -Wall -Wextra -Wno-unused-command-line-argument -
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/hacker/Study/Programming_3sem/LR1/lab01-parser./cmake-build-debug/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/3.17.3/CompilerIdCXX/CMakeCXXCompilerId.cpp -I/home/hacker/Study/Programming_3sem/LR1/lab01-parser/include -isystem /home/hacker/.hunter/_Base/e14bc15/9b2c9d4/2cb8efb/Install/include 
+CXX_INCLUDES = -I/home/hacker/Study/Programming_3sem/LR1/lab01-parser/include -isystem /home/hacker/.hunter/_Base/e14bc15/9b2c9d4/2cb8efb/Install/include 
 

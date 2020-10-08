@@ -10,7 +10,6 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/home/hacker/Study/Programming_3sem/LR1/lab01-parser./cmake-build-debug/_3rdParty/Hunter/toolchain/_builds/CMakeFiles/3.17.3/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "../include"
   "/home/hacker/.hunter/_Base/e14bc15/9b2c9d4/2cb8efb/Install/include"
   )

@@ -35,10 +35,6 @@ add_executable(tests
   # TODO: enum your files and delete this comment
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
 )
-
-include_directories("${PROJECT_SOURCE_DIR}./cmake-build-debug/\
-_3rdParty/Hunter/toolchain/_builds/CMakeFiles/3.17.3/CompilerIdCXX/\
-CMakeCXXCompilerId.cpp")
 target_include_directories(parser
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
 )

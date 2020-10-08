@@ -1,6 +1,7 @@
 /* This source file must have a .cpp extension so that all C++ compilers
    recognize the extension without flags.  Borland does not know .cxx for
    example.  */
+// Copyright 2020 hacker
 #ifndef __cplusplus
 # error "A C compiler has been selected for C++."
 #endif
@@ -551,8 +552,7 @@ char const *info_cray = "INFO" ":" "compiler_wrapper[CrayPrgEnv]";
 #ifdef COMPILER_VERSION_MAJOR
 char const info_version[] = {
   'I', 'N', 'F', 'O', ':',
-  'c', 'o', 'm', 'p', 'i', 'l', 'e', 'r', '_', \
-  'v', 'e', 'r', 's', 'i', 'o', 'n', '[',
+  'c','o','m','p','i','l','e','r','_','v','e','r','s','i','o','n','[',
   COMPILER_VERSION_MAJOR,
 # ifdef COMPILER_VERSION_MINOR
   '.', COMPILER_VERSION_MINOR,
@@ -563,7 +563,7 @@ char const info_version[] = {
 #   endif
 #  endif
 # endif
-  ']', '\0'};
+  ']','\0'};
 #endif
 
 /* Construct a string literal encoding the internal version number. */
