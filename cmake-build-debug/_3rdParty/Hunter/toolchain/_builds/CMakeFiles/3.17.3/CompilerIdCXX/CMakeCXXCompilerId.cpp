@@ -284,7 +284,8 @@ defined(__ADSPTS__) || defined(__ADSP21000__)
 #  define COMPILER_VERSION_PATCH DEC((__VER__) % 1000)
 #  define COMPILER_VERSION_INTERNAL DEC(__IAR_SYSTEMS_ICC__)
 # elif defined(__VER__) && (defined(__ICCAVR__) || defined(__ICCRX__) || \
-defined(__ICCRH850__) || defined(__ICCRL78__) || defined(__ICC430__) || defined(__ICCRISCV__) || defined(__ICCV850__) || defined(__ICC8051__))
+defined(__ICCRH850__) || defined(__ICCRL78__) || defined(__ICC430__) ||
+defined(__ICCRISCV__) || defined(__ICCV850__) || defined(__ICC8051__))
 #  define COMPILER_VERSION_MAJOR DEC((__VER__) / 100)
 #  define COMPILER_VERSION_MINOR DEC((__VER__) - (((__VER__) / 100)*100))
 #  define COMPILER_VERSION_PATCH DEC(__SUBVERSION__)
@@ -599,7 +600,8 @@ char const info_simulate_version[] = {
   ']', '\0'};
 #endif
 
-/* Construct the string literal in pieces to prevent the source from
+/* Construc
+ * t the string literal in pieces to prevent the source from
    getting matched.  Store it in a pointer rather than an array
    because some compilers will just produce instructions to fill the
    array rather than assigning a pointer to a static array.  */
