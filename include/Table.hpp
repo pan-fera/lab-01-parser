@@ -15,7 +15,8 @@ public:
 
     ~Table();
 
-    static Table parseFile(const std::string& s); //вызов метода без создания экземпляра класса
+    static Table parseFile(const std::string& s);
+    //вызов метода без создания экземпляра класса
 
     size_t w_name, w_group, w_avg, w_debt, w_space;
 
