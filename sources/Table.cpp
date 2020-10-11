@@ -29,7 +29,8 @@ Table::Table(const json& j):
     for (size_t i =0; i < m_students.size(); i++)
     {
         m_w[0] = (m_students[i].length_name() > m_w[0])?
-                m_students[i].length_name():m_w[0]; //a,b; y=(a>b)? a:b; a-true, b-false
+                m_students[i].length_name():m_w[0];
+        //a,b; y=(a>b)? a:b; a-true, b-false
         m_w[1] = (m_students[i].length_group() > m_w[1])?
                 m_students[i].length_group():m_w[1];
         m_w[2] = (m_students[i].length_avg() > m_w[2])?
