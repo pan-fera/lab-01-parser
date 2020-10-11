@@ -19,7 +19,7 @@ Table::Table(const json& j):
     m_w.push_back(w_debt);
 
     for (json::const_iterator i = j.at("items").begin();
-         // инициализация полей классов Student
+         // инициализация полей  классов Student
             i != j.at("items").end(); ++i) {
         Student student;
         Student::from_json(i.value(), student);
