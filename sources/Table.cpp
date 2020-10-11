@@ -6,7 +6,7 @@
 #include "Table.hpp"
 #include <fstream>
 Table::Table(const json& j):
-        m_students(0), m_w(0){
+    m_students(0), m_w(0){
     w_name = 4;
     w_group = 5;
     w_avg = 3;
@@ -18,17 +18,18 @@ Table::Table(const json& j):
     m_w.push_back(w_avg);
     m_w.push_back(w_debt);
 
-    for (json::const_iterator it = j.at("items").begin();
-            it != j.at("items").end(); ++it) {
+    for (json::const_iterator i = j.at("items").begin();
+         // инициализация полей классов Student
+            i != j.at("items").end(); ++i) {
         Student student;
-        Student::from_json(it.value(), student);
+        Student::from_json(i.value(), student);
         m_students.push_back(student);
     }
 
     for (size_t i =0; i < m_students.size(); i++)
     {
         m_w[0] = (m_students[i].length_name() > m_w[0])?
-                m_students[i].length_name():m_w[0];
+                m_students[i].length_name():m_w[0]; //a,b; y=(a>b)? a:b; a-true, b-false
         m_w[1] = (m_students[i].length_group() > m_w[1])?
                 m_students[i].length_group():m_w[1];
         m_w[2] = (m_students[i].length_avg() > m_w[2])?
@@ -44,13 +45,14 @@ Table::Table(const json& j):
 
 
 Table Table::parseFile(const std::string& s) {
-    std::ifstream file(s);
+    std::ifstream file(s); //чтение
+
     if (!file) {
         throw std::runtime_error("unable to open json: " + s);
     }
 
-    json j;
-    file >> j;
+    json j;//создание json строки
+    file >> j;//записываем содержимое файла в строку
 
     if (j.find("items") == j.end())
     {
@@ -64,10 +66,10 @@ Table Table::parseFile(const std::string& s) {
     {
         throw std::runtime_error("Items should be array in " + s);
     }
-    if (j.at("items").size() != std::any_cast<std::size_t> \
+    if (j.at("items").size() != std::any_cast<std::size_t>
             (j.at("_meta").at("count").get<std::size_t>()))
     {
-        throw std::runtime_error \
+        throw std::runtime_error
         ("Count elements in array items != _meta in file " + s);
     }
     Table table(j);

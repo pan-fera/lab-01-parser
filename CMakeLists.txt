@@ -29,10 +29,9 @@ find_package(nlohmann_json 3.2.0 REQUIRED)
 
 add_library(parser STATIC
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/Student.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/sources/Table.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/sources/Table.cpp
         )
 add_executable(tests
-  # TODO: enum your files and delete this comment
   ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
 )
 target_include_directories(parser

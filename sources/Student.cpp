@@ -14,7 +14,7 @@ void Student::from_json(const json& j, Student& s) {
     j.at("debt").get_to(s.debt);
 }
 
-void Student::print_name(std::ostream &out) const
+void Student::print_name(std::ostream &out) const//класс не поменяется
 {
     out << std::any_cast<std::string>(name);
 }

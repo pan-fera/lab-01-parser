@@ -49,10 +49,10 @@ R"({
 
     std::ofstream file_json;//файловый вывод
 
-    file_json.open("file_json.json");
+    file_json.open("file_json1.json");
     file_json << test_json;
     file_json.close();
-    Table table = Table::parseFile("file_json.json");
+    Table table = Table::parseFile("file_json1.json");
 
 
     std::stringstream str;
@@ -100,13 +100,13 @@ R"({
 
     std::ofstream file_json;//файловый вывод
 
-    file_json.open("file_json.json");
+    file_json.open("file_json2.json");
     file_json << responseString;
     file_json.close();
-    std::string ref_string = "Items should be array in file_json.json";
+    std::string ref_string = "Items should be array in file_json2.json";
 
     try{
-        Table table = Table::parseFile("file_json.json");
+        Table table = Table::parseFile("file_json2.json");
     }
     catch(std::runtime_error& s)
     {
@@ -131,14 +131,14 @@ R"({
 })";
     std::ofstream file_json;//файловый вывод
 
-    file_json.open("file_json.json");
+    file_json.open("file_json3.json");
     file_json << responseString;
     file_json.close();
     std::string ref_string = \
-            "Count elements in array items != _meta in file file_json.json";
+            "Count elements in array items != _meta in file file_json3.json";
 
     try{
-        Table table = Table::parseFile("file_json.json");
+        Table table = Table::parseFile("file_json3.json");
     }
     catch(std::runtime_error& s)
     {
@@ -360,13 +360,13 @@ R"({
 
     std::ofstream file_json;//файловый вывод
 
-    file_json.open("file_json.json");
+    file_json.open("file_json4.json");
     file_json << responseString;
     file_json.close();
-    std::string ref_string = "Items should be in file file_json.json";
+    std::string ref_string = "Items should be in file file_json4.json";
 
     try{
-        Table table = Table::parseFile("file_json.json");
+        Table table = Table::parseFile("file_json4.json");
     }
     catch(std::runtime_error& s)
     {
@@ -391,13 +391,13 @@ R"({
 
     std::ofstream file_json;//файловый вывод
 
-    file_json.open("file_json.json");
+    file_json.open("file_json5.json");
     file_json << responseString;
     file_json.close();
-    std::string ref_string = "_meta should be in file file_json.json";
+    std::string ref_string = "_meta should be in file file_json5.json";
 
     try{
-        Table table = Table::parseFile("file_json.json");
+        Table table = Table::parseFile("file_json5.json");
     }
     catch(std::runtime_error& s)
     {
