@@ -58,7 +58,7 @@ R"({
     std::stringstream str;
     table.print(str);
     std::cout << str.str();
-    std::string ref_string =\
+    std::string ref_string =
 R"(| name          | group  | avg   | debt    |
 |---------------|--------|-------|---------|
 | Ivanov Petr   | 1      | 4.25  | null    |
