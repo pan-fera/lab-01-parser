@@ -9,7 +9,7 @@ TEST(Example, EmptyTest) {
 }
 
 TEST(Parse, FromJson){
-  std::cout << "KEK!" << std::endl;
+ 
   std::string test_json=\
 R"({
   "items": [
